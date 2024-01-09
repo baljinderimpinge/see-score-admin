@@ -1,25 +1,23 @@
-import React from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//import LogoutButton from './pages/login';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/login';
-import { Dashboard } from './pages/dashboard';
-import AuthenticatedRoute from './HOC/priveteRoures';  // Correct the import path
-
+import DashBoard from './pages/dashboard';
+import Header from './component/header/header';
+import User from './pages/user';
 function App() {
   return (
-    <React.Fragment>
-      <BrowserRouter>
+    <div className="App">
+      <Router>
+       {/* <Header/> */}
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route element={<AuthenticatedRoute />}>
-            <Route path="/Dashboard" element={<Dashboard />} />
-          </Route>
+        <Route path="/login" element={<Login />} />
+          <Route path="/" element={<DashBoard />} />
+          <Route path="/user" element={<User />} />
+
+         
         </Routes>
-      </BrowserRouter>
-<Login/>
-    </React.Fragment>
+      </Router>
+    </div>
   );
 }
 

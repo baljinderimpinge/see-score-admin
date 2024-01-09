@@ -3,7 +3,12 @@ import  Axios from 'axios'
 const User = () => {
     const [userData, setUserData]= useState()
     useEffect(() => {
-        Axios.get("http://localhost:7000/user/users")
+      let token = localStorage.getItem("token")
+        Axios.get("http://localhost:4000/admin/users",{
+           headers:{
+            Authorization:`Bearer ${token}`
+           }
+        })
           .then(response => {
             // Handle the data here
             console.log(response.data);
@@ -21,9 +26,10 @@ const User = () => {
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">name</th>
-      <th scope="col">pass</th>
-      <th scope="col">id</th>
+      <th scope="col">firstName</th>
+      <th scope="col">lastName</th>
+      <th scope="col">Email</th>
+      <th scope="col">Domain</th>
     </tr>
   </thead>
   <tbody>
@@ -31,9 +37,10 @@ const User = () => {
         return(
             <tr>
             <th scope="row">1</th>
-            <td>{item.name}</td>
-            <td>{item.password}</td>
-            <td>{item.id}</td>
+            <td>{item.firstName}</td>
+            <td>{item.lastName}</td>
+            <td>{item.email}</td>
+            <td>Microsoft</td>
            </tr>
         )
 

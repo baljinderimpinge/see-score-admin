@@ -16,9 +16,10 @@ function App() {
 <React.Fragment>
       <BrowserRouter>
         <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
           <Route element={<AuthenticatedRoute />}>
           <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/user" element={<User />} />
           </Route>
         </Routes>
       </BrowserRouter>

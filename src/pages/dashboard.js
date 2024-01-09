@@ -1,6 +1,7 @@
 import React from "react";
 import "./login";
 import './login.css';
+import { useNavigate } from "react-router-dom";
 import Images from "../assets/images/chain.svg"
 import RiskImage  from '../assets/images/riska-logo.svg';  // Import specific image file(s) if needed
 import  userImage from '../assets/images/user.svg';  // Import specific image file(s) if needed
@@ -8,6 +9,12 @@ import lockImage from '../assets/images/lock.svg';  // Import specific image fil
 import outImage from '../assets/images/out.svg';  // Import specific image file(s) if needed
 
 function DashBoard() {
+  const navigate = useNavigate();
+
+  const handleCustomersClick = () => {
+    // Navigate to the "/user" route
+    navigate("/user");
+  };
   return (
    <div>
          <header>
@@ -28,7 +35,7 @@ function DashBoard() {
               <h1>Welcome to Guardian <br /> Admin Portal</h1>
               <div className="addition">
                 <a href="#">Onboarding</a>
-                <a href="#">Customers</a>
+                <a href="#" onClick={handleCustomersClick}>Customers</a>
                 <a href="#">Alerts</a>
                 <a href="#">
                   Logout <img src={require("../assets/images/out.svg").default} alt="" />

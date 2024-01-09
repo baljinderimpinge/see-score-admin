@@ -25,9 +25,13 @@ function Login(props) {
 
     try {
       const response = await Axios.post('http://localhost:4000/admin/login', formData);
-      const accessToken = response.data.token;
+      console.log(response.data.data.token,"_____++")
+      const accessToken = response.data.data.token;
       console.log('Access Token:', accessToken);
-      navigate('/dashboard');
+      if (accessToken) {
+        localStorage.setItem("token", accessToken)
+        navigate('/Dashboard');
+      }
     } catch (error) {
       console.error('Error during login:', error.message);
 

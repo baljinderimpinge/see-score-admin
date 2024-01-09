@@ -1,23 +1,29 @@
+import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/login';
+import LogoutButton from './pages/logout'
+import './pages/login.css'
+import  './pages/dashboard.css'
 import DashBoard from './pages/dashboard';
 import Header from './component/header/header';
 import User from './pages/user';
+import AuthenticatedRoute from './HOC/priveteRoures';
 function App() {
   return (
-    <div className="App">
-      <Router>
-       {/* <Header/> */}
+
+
+<React.Fragment>
+      <BrowserRouter>
         <Routes>
         <Route path="/login" element={<Login />} />
-          <Route path="/" element={<DashBoard />} />
-          <Route path="/user" element={<User />} />
-
-         
+          <Route element={<AuthenticatedRoute />}>
+          <Route path="/dashboard" element={<DashBoard />} />
+          </Route>
         </Routes>
-      </Router>
-    </div>
+      </BrowserRouter>
+<LogoutButton/>
+    </React.Fragment>
   );
 }
 

@@ -15,6 +15,13 @@ function DashBoard() {
     // Navigate to the "/user" route
     navigate("/user");
   };
+  const handleLogout = () => {
+    localStorage.clear("token");
+    navigate("/");
+    // Optionally, you can redirect the user to the login page or perform other actions
+    // window.location.href = "/login";
+};
+
   return (
    <div>
          <header>
@@ -26,7 +33,7 @@ function DashBoard() {
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
              <li><a className="dropdown-item" href="#"><img src={userImage}/> Account</a></li>
               <li><a className="dropdown-item" href="#"><img src={lockImage}/> Change Password</a></li>
-              <li><a className="dropdown-item" href="#"><img src={outImage}/> Logout</a></li>
+              <li><a className="dropdown-item" href="#" onClick={handleLogout} ><img src={outImage}/> Logout</a></li>
             </ul>
           </div>
           </header>

@@ -3,6 +3,8 @@ import Axios from 'axios';
 import "./login";
 import  { useState } from "react";
 import './login.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import Images from "../assets/images/chain.svg"
 import RiskImage  from '../assets/images/riska-logo.svg';  // Import specific image file(s) if needed
@@ -31,6 +33,7 @@ const [industry, setIndustry] = useState('');
 const [contactName, setContactName] = useState('');
 const [contactNumber, setContactNumber] = useState('');
 const [contactEmail, setContactEmail] = useState('');
+const [error, setError] = useState('');
 
 
 const handleSubmit = async () => {
@@ -62,6 +65,11 @@ const handleSubmit = async () => {
 
   } catch (error) {
     console.error('API Error:', error);
+    if (error.message) {
+      const errorMessage = error.response?.data.message || 'Please enter a valid email';
+      setError(errorMessage);
+      toast.error(errorMessage, { position: toast.POSITION.TOP_CENTER });
+    }
   }
 };
 
@@ -148,6 +156,7 @@ const handleSubmit = async () => {
         </div>
       </section>
       <footer></footer>
+      <ToastContainer />
     </div>
   );
 }
